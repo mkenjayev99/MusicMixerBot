@@ -1,3 +1,5 @@
+import os
+
 from aiogram.utils import executor
 import random
 from aiogram import Bot, Dispatcher, types
@@ -5,7 +7,7 @@ from aiogram.contrib.middlewares.logging import LoggingMiddleware
 from aiogram.types import Message, ContentType
 
 # Replace 'YOUR_BOT_TOKEN' with your actual Telegram Bot API token
-BOT_TOKEN = '6360625136:AAE_hTqBIl0CsJgeXM_qeCQHIo1KPGX-IHI'
+BOT_TOKEN = os.environ.get("BOT_TOKEN")
 bot = Bot(token=BOT_TOKEN)
 dp = Dispatcher(bot)
 dp.middleware.setup(LoggingMiddleware())
