@@ -7,7 +7,7 @@ from aiogram.contrib.middlewares.logging import LoggingMiddleware
 from aiogram.types import Message, ContentType
 
 # Replace 'YOUR_BOT_TOKEN' with your actual Telegram Bot API token
-BOT_TOKEN = os.environ.get("BOT_TOKEN")
+BOT_TOKEN = "6360625136:AAE_hTqBIl0CsJgeXM_qeCQHIo1KPGX-IHI"
 bot = Bot(token=BOT_TOKEN)
 dp = Dispatcher(bot)
 dp.middleware.setup(LoggingMiddleware())
@@ -16,11 +16,19 @@ dp.middleware.setup(LoggingMiddleware())
 stored_messages = []
 
 
-@dp.message_handler(commands=['start', 'help'])
+@dp.message_handler(commands=['start', ])
 async def send_welcome(message: Message):
-    await message.reply("Hello! I am your shuffle bot. Send me some messages or files, and I'll shuffle them for you.")
+    await message.reply("Hello! I am your shuffle bot. Send me some messages or files then do /shuffle, and I'll shuffle them for you.")
     print(f"{message.from_user.full_name} is playing this bot")
 
+
+@dp.message_handler(commands=['help', ])
+async def send_welcome(message: Message):
+    await message.reply("/start - play with bot \n\
+/help - get a help (what commands are available)\n\
+/shuffle - shuffle musics that have recently sent")
+    print(f"{message.from_user.full_name} is playing this bot")
+    
 
 @dp.message_handler(commands=['shuffle'])
 async def shuffle_music_files(message: Message):
